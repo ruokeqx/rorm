@@ -1,0 +1,17 @@
+DAY1
+```
+sqlite> create table User(Name next, Age integer);
+sqlite> INSERT INTO User(Name, Age) VALUES ("Tom", 18), ("Jack", 25);
+sqlite> .head on
+sqlite> SELECT * FROM User WHERE Age > 20;
+Name|Age
+Jack|25
+sqlite> SELECT COUNT(*) FROM User;
+COUNT(*)
+2
+sqlite> .table
+User
+sqlite> .schema user 
+CREATE TABLE User(Name next, Age integer);
+sqlite>
+```
