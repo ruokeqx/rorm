@@ -3,3 +3,4 @@
 实现功能：
 
 日志库、原生SQL、Session、Engine
+抽象dialect、struct转schema
