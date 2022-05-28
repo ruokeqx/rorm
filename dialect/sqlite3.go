@@ -8,6 +8,9 @@ import (
 
 type sqlite3 struct{}
 
+// 确保某个类型实现了某个接口的所有方法
+// Dialect(interface) *sqlite3(implementation)
+// nil转*sqlite3再转Dialect 失败编译器会报错
 var _ Dialect = (*sqlite3)(nil)
 
 func init() {

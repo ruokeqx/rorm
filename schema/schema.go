@@ -1,13 +1,14 @@
 package schema
+
 // 对象和表的转换
 // 表名——结构体名
 // 字段和字段类型——成员变量和类型
 // 约束条件——go tag(java annotation)
 
 import (
-	"rorm/dialect"
 	"go/ast"
 	"reflect"
+	"rorm/dialect"
 )
 
 // Field represents a column of database
@@ -55,4 +56,16 @@ func Parse(dest interface{}, d dialect.Dialect) *Schema {
 		}
 	}
 	return schema
+}
+
+// 遍历Fields指针 根据数据库中列的顺序，从对象中找到对应的值，按顺序平铺
+// &User{Name: "Tom", Age: 18}
+func (schema *Schema) RecordValues(dest interface{}) []interface{} {
+	destValue := reflect.Indirect(reflect.ValueOf(dest))
+	var fieldValues []interface{}
+	// 遍历Fields指针
+	for _, field := range schema.Fields {
+		fieldValues = append(fieldValues, destValue.FieldByName(field.Name).Interface())
+	}
+	return fieldValues
 }

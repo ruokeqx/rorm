@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	engine, _ := rorm.NewEngine("sqlite3", "rorm.db")
+	engine, _ := rorm.NewEngine("sqlite3", "../rorm.db")
 	defer engine.Close()
 	s := engine.NewSession()
 	_, _ = s.Raw("DROP TABLE IF EXISTS User;").Exec()
